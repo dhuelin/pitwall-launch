@@ -1,13 +1,16 @@
 ---
 // src/components/Footer.astro
+import { config } from '../config'
 ---
 
 <footer class="py-10 px-6 bg-bg-primary border-t border-border-subtle">
   <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-text-muted text-sm">
     <p>Pitwall — built by a fan, for fans.</p>
-    <p class="text-center text-xs">
-      We only use your email to notify you about Pitwall. No spam.
-    </p>
+    {!config.isBetaLive && (
+      <p class="text-center text-xs">
+        We only use your email to notify you about Pitwall. No spam.
+      </p>
+    )}
     <a
       href="https://github.com/dhuelin"
       target="_blank"
