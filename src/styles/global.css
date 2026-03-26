@@ -1,1 +1,52 @@
+/* src/styles/global.css */
 @import "tailwindcss";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/space-grotesk/600.css";
+@import "@fontsource/space-grotesk/700.css";
+
+@theme {
+  --color-bg-primary: #0A0A0A;
+  --color-bg-card: #141414;
+  --color-accent-red: #E10600;
+  --color-accent-orange: #F97316;
+  --color-text-primary: #FFFFFF;
+  --color-text-muted: #9CA3AF;
+  --color-border-subtle: #262626;
+
+  --font-sans: 'Inter', sans-serif;
+  --font-heading: 'Space Grotesk', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Speed-line sweep animation — used in Hero */
+@keyframes speedline-sweep {
+  0%   { transform: translateX(-100%); opacity: 0; }
+  20%  { opacity: 0.15; }
+  80%  { opacity: 0.15; }
+  100% { transform: translateX(200%); opacity: 0; }
+}
+
+.speedline {
+  position: absolute;
+  height: 1px;
+  width: 60%;
+  background: linear-gradient(to right, transparent, #E10600, transparent);
+  animation: speedline-sweep 1.8s ease-in-out forwards;
+  pointer-events: none;
+}
+
+.speedline-1 { top: 30%; animation-delay: 0.1s; }
+.speedline-2 { top: 45%; width: 80%; animation-delay: 0.25s; }
+.speedline-3 { top: 55%; width: 50%; animation-delay: 0.4s; }
+.speedline-4 { top: 65%; width: 70%; animation-delay: 0.15s; }
