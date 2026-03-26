@@ -1,0 +1,99 @@
+---
+// src/components/WaitlistCta.astro
+import { config } from '../config'
+---
+
+<section id="waitlist" class="py-24 px-6 bg-bg-card border-t border-border-subtle">
+  <div class="max-w-xl mx-auto text-center">
+    {config.isBetaLive ? (
+      <>
+        <h2 class="font-heading font-bold text-3xl sm:text-4xl text-text-primary mb-4">
+          Beta is open
+        </h2>
+        <p class="text-text-muted mb-10">
+          Download Pitwall now and start predicting.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href={config.appStoreUrl}
+            class="inline-flex items-center justify-center px-8 py-4 bg-accent-red hover:bg-accent-orange text-white font-heading font-semibold rounded-lg transition-colors min-h-[44px]"
+          >
+            Download on the App Store
+          </a>
+          <a
+            href={config.playStoreUrl}
+            class="inline-flex items-center justify-center px-8 py-4 border border-border-subtle hover:border-accent-red text-text-primary font-heading font-semibold rounded-lg transition-colors min-h-[44px]"
+          >
+            Get it on Google Play
+          </a>
+        </div>
+      </>
+    ) : (
+      <>
+        <h2 class="font-heading font-bold text-3xl sm:text-4xl text-text-primary mb-4">
+          Be first on the grid
+        </h2>
+        <p class="text-text-muted mb-10">
+          Pitwall is coming to iOS and Android. Drop your email and we'll let you know when beta opens.
+        </p>
+
+        <form
+          id="waitlist-form"
+          action={`https://formspree.io/f/${config.formspreeId}`}
+          method="POST"
+          class="flex flex-col sm:flex-row gap-3"
+        >
+          <input
+            type="email"
+            name="email"
+            required
+            placeholder="your@email.com"
+            class="flex-1 px-4 py-3 bg-bg-primary border border-border-subtle rounded-lg text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent-red transition-colors min-h-[44px]"
+          />
+          <button
+            type="submit"
+            class="px-8 py-3 bg-accent-red hover:bg-accent-orange text-white font-heading font-semibold rounded-lg transition-colors min-h-[44px] whitespace-nowrap"
+          >
+            Join the waitlist
+          </button>
+        </form>
+
+        <!-- Inline success/error state — no page reload -->
+        <p id="form-success" class="hidden mt-4 text-accent-orange font-medium">
+          ✓ You're on the list. We'll be in touch.
+        </p>
+        <p id="form-error" class="hidden mt-4 text-red-400 text-sm">
+          Something went wrong. Please try again or email us directly.
+        </p>
+      </>
+    )}
+  </div>
+</section>
+
+{!config.isBetaLive && (
+  <script>
+    const form = document.getElementById('waitlist-form') as HTMLFormElement | null
+    const success = document.getElementById('form-success')
+    const error = document.getElementById('form-error')
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault()
+      const data = new FormData(form)
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { Accept: 'application/json' },
+        })
+        if (res.ok) {
+          form.style.display = 'none'
+          success?.classList.remove('hidden')
+        } else {
+          error?.classList.remove('hidden')
+        }
+      } catch {
+        error?.classList.remove('hidden')
+      }
+    })
+  </script>
+)}
