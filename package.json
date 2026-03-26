@@ -10,7 +10,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "lint": "eslint src --ext .ts,.astro"
+    "lint": "eslint src"
   },
   "dependencies": {
     "@fontsource/inter": "^5.2.8",
