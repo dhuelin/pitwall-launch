@@ -41,7 +41,7 @@ body {
   position: absolute;
   height: 1px;
   width: 60%;
-  background: linear-gradient(to right, transparent, #E10600, transparent);
+  background: linear-gradient(to right, transparent, var(--color-accent-red), transparent);
   animation: speedline-sweep 1.8s ease-in-out forwards;
   pointer-events: none;
 }
