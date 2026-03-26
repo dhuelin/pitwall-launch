@@ -1,0 +1,42 @@
+---
+// src/components/FeatureHighlights.astro
+const features = [
+  {
+    icon: '📋',
+    title: 'Predict the Grid',
+    description:
+      'Drag-to-rank finishing order with proximity-based scoring. The closer your prediction, the more points you earn. Fully configurable prediction depth per league.',
+  },
+  {
+    icon: '💰',
+    title: 'Bonus Bets',
+    description:
+      'Stake your points on fastest lap, DNFs, and safety car deployments. High risk, high reward — wrong bet and you lose your stake.',
+  },
+  {
+    icon: '🏟️',
+    title: 'Compete in Leagues',
+    description:
+      'Private leagues with custom scoring rules. Invite friends, set your own multipliers, and track the standings across every race weekend.',
+  },
+]
+---
+
+<section class="py-24 px-6 bg-bg-primary">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="font-heading font-bold text-3xl sm:text-4xl text-text-primary text-center mb-16">
+      Everything you need for race weekend
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {features.map((feature) => (
+        <div class="bg-bg-card border border-border-subtle rounded-xl p-8 hover:border-accent-red transition-colors">
+          <div class="text-4xl mb-5" aria-hidden="true">{feature.icon}</div>
+          <h3 class="font-heading font-bold text-lg text-text-primary mb-3">
+            {feature.title}
+          </h3>
+          <p class="text-text-muted leading-relaxed text-sm">{feature.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
